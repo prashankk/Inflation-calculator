@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inflation Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Inflation Calculator</h2>
+    <label>Initial Amount (₹):</label>
+    <input type="number" id="amount" placeholder="Enter amount">
+    <br>
+    <label>Number of Years:</label>
+    <input type="number" id="years" placeholder="Enter years">
+    <br>
+    <label>Annual Inflation Rate (%):</label>
+    <input type="number" id="inflation" placeholder="Enter rate">
+    <br>
+    <button onclick="calculateInflation()">Calculate</button>
+    <h3 id="result"></h3><script>
+    function calculateInflation() {
+        let amount = parseFloat(document.getElementById("amount").value);
+        let years = parseFloat(document.getElementById("years").value);
+        let inflation = parseFloat(document.getElementById("inflation").value) / 100;
+        
+        if (isNaN(amount) || isNaN(years) || isNaN(inflation)) {
+            document.getElementById("result").innerText = "Please enter valid numbers";
+            return;
+        }
+        
+        let futureValue = amount * Math.pow(1 + inflation, years);
+        let presentValue = amount / Math.pow(1 + inflation, years);
+        
+        document.getElementById("result").innerText = `Future Value: ₹${futureValue.toFixed(2)} | Present Value: ₹${presentValue.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
